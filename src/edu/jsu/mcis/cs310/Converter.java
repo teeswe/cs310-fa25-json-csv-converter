@@ -92,7 +92,7 @@ public class Converter {
                 colHeadings.add(header);
             }
 
-            // Extract ProdNums and Data
+            
             JsonArray prodNums = new JsonArray();
             JsonArray data = new JsonArray();
 
