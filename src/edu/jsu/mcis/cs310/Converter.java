@@ -81,11 +81,11 @@ public class Converter {
         
         try {
         
-            // Read CSV string using OpenCSV
+            
             CSVReader reader = new CSVReader(new StringReader(csvString));
             List<String[]> rows = reader.readAll();
 
-            // Extract column headings
+            
             String[] headers = rows.get(0);
             JsonArray colHeadings = new JsonArray();
             for (String header : headers) {
@@ -104,23 +104,23 @@ public class Converter {
                 for (int j = 1; j < row.length; j++) {
                     String value = row[j];
                     try {
-                        // Convert numeric values to integers
+                        
                         int intValue = Integer.parseInt(value);
                         rowData.add(intValue);
                     } catch (NumberFormatException e) {
-                        rowData.add(value); // keep as string
+                        rowData.add(value); 
                     }
                 }
                 data.add(rowData);
             }
 
-            // Build JSON object
+          
             JsonObject json = new JsonObject();
             json.put("ProdNums", prodNums);
             json.put("ColHeadings", colHeadings);
             json.put("Data", data);
 
-            // Convert to JSON string
+           
             result = json.toJson();
            
         }
@@ -147,10 +147,10 @@ public class Converter {
             StringWriter sw = new StringWriter();
             CSVWriter writer = new CSVWriter(sw);
 
-            // Write header
+            
             writer.writeNext(colHeadings.toArray(new String[0]));
 
-            // Write data rows
+            
             for (int i = 0; i < data.size(); i++) {
                 JsonArray rowArray = (JsonArray) data.get(i);
                 String[] rowStrings = new String[rowArray.size() + 1];
